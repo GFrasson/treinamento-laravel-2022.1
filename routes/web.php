@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+// Usuários
+Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+Route::get('/usuarios/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/usuarios/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::get('/usuarios/{user}', [UserController::class, 'show'])->name('users.show');
+Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
+Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/usuarios/{user}', [UserController::class, 'delete'])->name('users.delete');
+
+// Route::resource('/usuarios', [UserController::class])->names('users');
+
+// Cargos
+// Route::resource('/cargos', [RoleController::class])->names('roles');
+
+// Núcleos
+// Route::resource('/nucleos', [CoreController::class])->names('cores');
+
 
 Auth::routes();
 
