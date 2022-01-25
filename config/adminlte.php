@@ -234,8 +234,8 @@ return [
         // Sidebar items:
         ['header' => 'Páginas'],
         [
-            'text' => 'Usuários',
-            'url'  => 'usuarios',
+            'text' => 'Membros',
+            'url'  => 'membros',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

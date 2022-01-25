@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,16 +18,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-// Usuários
-Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
-Route::get('/usuarios/create', [UserController::class, 'create'])->name('users.create');
-Route::get('/usuarios/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::get('/usuarios/{user}', [UserController::class, 'show'])->name('users.show');
-Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
-Route::put('/usuarios/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/usuarios/{user}', [UserController::class, 'delete'])->name('users.delete');
+// Membros
+Route::get('/membros', [MemberController::class, 'index'])->name('members.index');
+Route::get('/membros/create', [MemberController::class, 'create'])->name('members.create');
+Route::get('/membros/{member}/edit', [MemberController::class, 'edit'])->name('members.edit');
+Route::get('/membros/{member}', [MemberController::class, 'show'])->name('members.show');
+Route::post('/membros', [MemberController::class, 'store'])->name('members.store');
+Route::put('/membros/{member}', [MemberController::class, 'update'])->name('members.update');
+Route::delete('/membros/{member}', [MemberController::class, 'delete'])->name('members.delete');
 
-// Route::resource('/usuarios', [UserController::class])->names('users');
+// Route::resource('/membros', [UserController::class])->names('members');
 
 // Cargos
 // Route::resource('/cargos', [RoleController::class])->names('roles');
