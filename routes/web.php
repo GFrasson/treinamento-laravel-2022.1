@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\CoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,9 @@ Route::get('/membros/{member}/edit', [MemberController::class, 'edit'])->name('m
 Route::get('/membros/{member}', [MemberController::class, 'show'])->name('members.show');
 Route::post('/membros', [MemberController::class, 'store'])->name('members.store');
 Route::put('/membros/{member}', [MemberController::class, 'update'])->name('members.update');
-Route::delete('/membros/{member}', [MemberController::class, 'delete'])->name('members.delete');
+Route::delete('/membros/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 
-// Route::resource('/membros', [UserController::class])->names('members');
+// Route::resource('/membros', UserController::class)->names('members');
 
 // Cargos
 
@@ -37,7 +38,7 @@ Route::resource('/cargos', RoleController::class)->names('roles')->parameters(['
 
 
 // Núcleos
-// Route::resource('/nucleos', [CoreController::class])->names('cores');
+Route::resource('/nucleos', CoreController::class)->names('cores')->parameters(['nucleos' => 'core']);
 
 
 Auth::routes();

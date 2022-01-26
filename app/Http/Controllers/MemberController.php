@@ -14,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = [];
+        $members = Member::all();
         return view('admin.members.index', compact('members'));
     }
 
@@ -37,7 +37,10 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Member::create($data);
+
+        return redirect()->route('members.index')->with('success', true);
     }
 
     /**
@@ -48,7 +51,7 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        //
+        return view('admin.members.show', compact('member'));
     }
 
     /**
@@ -59,8 +62,7 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        $member = [];
-        return view('admin.members.create', compact('member'));
+        return view('admin.members.edit', compact('member'));
     }
 
     /**
@@ -72,7 +74,10 @@ class MemberController extends Controller
      */
     public function update(Request $request, Member $member)
     {
-        //
+        $data = $request->all();
+        $member->update($data);
+        
+        return redirect()->route('members.index')->with('success', true);
     }
 
     /**
@@ -83,6 +88,8 @@ class MemberController extends Controller
      */
     public function destroy(Member $member)
     {
-        //
+        $member->delete();
+
+        return redirect()->route('members.index')->with('success', true);
     }
 }
