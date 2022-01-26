@@ -1,5 +1,5 @@
 @if ($body != '' || !($createFirst ?? true) || request('search') || request('year'))
-    <div class="card">
+    <div class="card mt-4">
         @if (isset($create) || isset($titulo))
             <div class="card-header card-outline cor-backend">
                 <h3 class="float-left m-0 table-title"><i class="{{ $icon ?? null }} mr-2"></i>{{ $titulo ?? null }}</h3>
@@ -50,17 +50,8 @@
     </div>
 @endif
 
-@push('scripts')
+@push('js')
     <script>
-        $(function() {
-                $('.select2').select2({
-                    placeholder: "Selecione um ano ",
-                    allowClear:true,
-                });
-            });
-        function research(){
-            $("#research").submit();
-        }
         $('select[value]').each(function () {
             $(this).val($(this).attr('value'));
         });

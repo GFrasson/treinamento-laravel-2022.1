@@ -1,20 +1,9 @@
 @extends('adminlte::page')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card mt-2">
-                <div class="card-header"></div>
+@push('css')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endpush
 
-                <div class="card-body">
-
-                    @section('content')
-                    @endsection          
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+@push('js')
+    <script src="{{ asset('js/app.js') }}" defer></script>
+@endpush
