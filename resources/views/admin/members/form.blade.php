@@ -9,6 +9,6 @@
     </div>
     <div class="form-group col-sm-12 col-md-4">
         <label for="password" class="required">Senha </label>
-        <input type="password" name="password" id="password"  class="form-control" required value="{{ old('password', $member->password) }}">
+        <input type="password" name="password" id="password" class="form-control" required>
     </div>
 </div>

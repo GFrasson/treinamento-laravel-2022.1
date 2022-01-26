@@ -26,7 +26,7 @@ Route::get('/membros/{member}/edit', [MemberController::class, 'edit'])->name('m
 Route::get('/membros/{member}', [MemberController::class, 'show'])->name('members.show');
 Route::post('/membros', [MemberController::class, 'store'])->name('members.store');
 Route::put('/membros/{member}', [MemberController::class, 'update'])->name('members.update');
-Route::delete('/membros/{member}', [MemberController::class, 'delete'])->name('members.delete');
+Route::delete('/membros/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 
 // Route::resource('/membros', UserController::class)->names('members');
 
