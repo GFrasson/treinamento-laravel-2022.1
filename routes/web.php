@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\CoreController;
@@ -16,9 +17,12 @@ use App\Http\Controllers\CoreController;
 |
 */
 
+// Dashboard
 Route::get('/', function () {
     return view('home');
 });
+
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Membros
 Route::get('/membros', [MemberController::class, 'index'])->name('members.index');
@@ -29,18 +33,12 @@ Route::post('/membros', [MemberController::class, 'store'])->name('members.store
 Route::put('/membros/{member}', [MemberController::class, 'update'])->name('members.update');
 Route::delete('/membros/{member}', [MemberController::class, 'destroy'])->name('members.destroy');
 
-// Route::resource('/membros', UserController::class)->names('members');
+// Route::resource('/membros', UserController::class)->names('members')->parameters(['membros' => 'member']);
 
 // Cargos
-
-
 Route::resource('/cargos', RoleController::class)->names('roles')->parameters(['cargos' => 'role']);
-
 
 // Núcleos
 Route::resource('/nucleos', CoreController::class)->names('cores')->parameters(['nucleos' => 'core']);
 
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
