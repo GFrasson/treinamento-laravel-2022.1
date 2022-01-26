@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,13 +28,13 @@ Route::post('/membros', [MemberController::class, 'store'])->name('members.store
 Route::put('/membros/{member}', [MemberController::class, 'update'])->name('members.update');
 Route::delete('/membros/{member}', [MemberController::class, 'delete'])->name('members.delete');
 
-// Route::resource('/membros', [UserController::class])->names('members');
+// Route::resource('/membros', UserController::class)->names('members');
 
 // Cargos
 // Route::resource('/cargos', [RoleController::class])->names('roles');
 
 // Núcleos
-// Route::resource('/nucleos', [CoreController::class])->names('cores');
+Route::resource('/nucleos', CoreController::class)->names('cores')->parameters(['nucleos' => 'core']);
 
 
 Auth::routes();

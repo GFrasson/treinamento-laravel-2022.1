@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
+use App\Models\Core;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CoreSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call(CoreSeeder::class);
+        Core::factory()->count(5)->create();
     }
 }
