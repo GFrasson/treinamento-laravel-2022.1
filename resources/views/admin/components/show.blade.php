@@ -11,9 +11,11 @@
         </div>
     </div>
 </div>
-<script>
-    const formControls = document.querySelectorAll('.form-control');
-    formControls.forEach(formControl => {
-        formControl.setAttribute("disabled", true)
-    });
-</script>
+@push('js')
+    <script>
+        const formControls = document.querySelectorAll('.form-control');
+        formControls.forEach(formControl => {
+            formControl.setAttribute("disabled", true)
+        });
+    </script>
+@endpush
