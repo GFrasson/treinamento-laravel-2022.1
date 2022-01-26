@@ -3,7 +3,7 @@
 @section('content')
     @component('admin.components.table')
         @slot('create', route('members.create'))
-        @slot('titulo', 'Usuários')
+        @slot('titulo', 'Membros')
         @slot('head')
             <th>Nome</th>
             <th>E-mail</th>
@@ -14,7 +14,7 @@
                 <tr>
                     <td>{{ $member->name }}</td>
                     <td>{{ $member->email }}</td>
-                    <td class="options">
+                    <td class="options d-flex justify-content-center gap-1">
                         <a href="{{ route('members.show', $member->id) }}" class="btn btn-dark">
                             <i class="fas fa-search"></i>
                         </a>

@@ -12,8 +12,7 @@
             @foreach ($cores as $core)
                 <tr>
                     <td>{{ $core->name }}</td>
-                    <td>{{ $core->email }}</td>
-                    <td class="options">
+                    <td class="options d-flex justify-content-center gap-1">
                         <a href="{{ route('cores.show', $core->id) }}" class="btn btn-dark">
                             <i class="fas fa-search"></i>
                         </a>

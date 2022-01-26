@@ -6,12 +6,13 @@
         @slot('titulo', 'Cargos')
         @slot('head')
             <th>Nome</th>
+            <th></th>
         @endslot
         @slot('body')
             @foreach ($roles as $role)
                 <tr>
                     <td>{{ $role->name }}</td>
-                    <td class="options">
+                    <td class="options d-flex justify-content-center gap-1">
                         <a href="{{ route('roles.show', $role->id) }}" class="btn btn-dark">
                             <i class="fas fa-search"></i>
                         </a>
