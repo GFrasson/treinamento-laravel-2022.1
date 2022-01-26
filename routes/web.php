@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,10 @@ Route::delete('/membros/{member}', [MemberController::class, 'delete'])->name('m
 // Route::resource('/membros', [UserController::class])->names('members');
 
 // Cargos
-// Route::resource('/cargos', [RoleController::class])->names('roles');
+
+
+Route::resource('/cargos', RoleController::class)->names('roles')->parameters(['cargos' => 'role']);
+
 
 // Núcleos
 // Route::resource('/nucleos', [CoreController::class])->names('cores');
