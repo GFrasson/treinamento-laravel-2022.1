@@ -25,4 +25,14 @@ class Role extends Model
     protected $hidden = [
 
     ];
+
+    /**
+     * Get the members from the role.
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class);
+        // return $this->hasMany(Member::class, 'chave_estrangeira', 'chave_local');
+    }
+
 }

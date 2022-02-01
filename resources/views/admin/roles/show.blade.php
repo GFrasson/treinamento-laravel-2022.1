@@ -5,6 +5,13 @@
     @slot('title', 'Detalhes do Cargo')
     @slot('content')
         @include('admin.roles.form')
+        <ul>
+            @foreach ($role->members as $member)
+            <li>
+                {{$member->name}}
+            </li>
+            @endforeach
+        </ul>
     @endslot
     @slot('back')
         <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary float-right ml-1"><i class="fas fa-pen"></i> Editar</a>

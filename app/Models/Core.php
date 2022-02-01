@@ -10,4 +10,12 @@ class Core extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    /**
+     * The Members that belong to the core.
+     */
+    public function members()
+    {
+        return $this->belongsToMany(Member::class)->withTimestamps();
+    }
 }

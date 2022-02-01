@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MemberRequest;
+use App\Models\Core;
 use App\Models\Member;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -26,7 +29,10 @@ class MemberController extends Controller
     public function create()
     {
         $member = new Member();
-        return view('admin.members.create', compact('member'));
+        $roles = Role::all();
+        $cores = Core::all();
+
+        return view('admin.members.create', compact('member', 'roles', 'cores'));
     }
 
     /**
@@ -35,11 +41,18 @@ class MemberController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MemberRequest $request)
     {
-        $data = $request->all();
-        Member::create($data);
+        $data = $request->validated();
+        dd($data);
+        $core_id = $data['core_id'];
+        unset($data['core_id']);
 
+        $member = Member::create($data);
+
+        $member->cores()->sync($core_id);
+        $member->save();
+        
         return redirect()->route('members.index')->with('success', true);
     }
 
@@ -51,7 +64,9 @@ class MemberController extends Controller
      */
     public function show(Member $member)
     {
-        return view('admin.members.show', compact('member'));
+        $roles = Role::all();
+        $cores = Core::all();
+        return view('admin.members.show', compact('member', 'roles', 'cores'));
     }
 
     /**
@@ -62,7 +77,9 @@ class MemberController extends Controller
      */
     public function edit(Member $member)
     {
-        return view('admin.members.edit', compact('member'));
+        $roles = Role::all();
+        $cores = Core::all();
+        return view('admin.members.edit', compact('member', 'roles', 'cores'));
     }
 
     /**
@@ -75,8 +92,14 @@ class MemberController extends Controller
     public function update(Request $request, Member $member)
     {
         $data = $request->all();
+        $core_id = $data['core_id'];
+        unset($data['core_id']);
+
         $member->update($data);
         
+        $member->cores()->sync($core_id);
+        $member->save();
+
         return redirect()->route('members.index')->with('success', true);
     }
 
