@@ -44,8 +44,7 @@ class MemberController extends Controller
     public function store(MemberRequest $request)
     {
         $data = $request->validated();
-        dd($data);
-        $core_id = $data['core_id'];
+        $core_id = $data['core_id'] ?? null;
         unset($data['core_id']);
 
         $member = Member::create($data);
@@ -89,10 +88,10 @@ class MemberController extends Controller
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $member)
+    public function update(Request $request, MemberRequest $member)
     {
         $data = $request->all();
-        $core_id = $data['core_id'];
+        $core_id = $data['core_id'] ?? null;
         unset($data['core_id']);
 
         $member->update($data);
