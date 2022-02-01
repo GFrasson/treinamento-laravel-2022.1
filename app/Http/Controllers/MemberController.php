@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MemberRequest;
+use App\Http\Requests\StoreMemberRequest;
+use App\Http\Requests\UpdateMemberRequest;
 use App\Models\Core;
 use App\Models\Member;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class MemberController extends Controller
 {
@@ -38,14 +40,16 @@ class MemberController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\StoreMemberRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MemberRequest $request)
+    public function store(StoreMemberRequest $request)
     {
         $data = $request->validated();
-        $core_id = $data['core_id'] ?? null;
+        $core_id = $data['core_id'] ?? [];
         unset($data['core_id']);
+
+        $data['password'] = Hash::make($data['password']);
 
         $member = Member::create($data);
 
@@ -84,16 +88,18 @@ class MemberController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\UpdateMemberRequest $request
      * @param  \App\Models\Member  $member
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MemberRequest $member)
+    public function update(UpdateMemberRequest $request, Member $member)
     {
-        $data = $request->all();
-        $core_id = $data['core_id'] ?? null;
+        $data = $request->validated();
+        $core_id = $data['core_id'] ?? [];
         unset($data['core_id']);
 
+        $data['password'] = Hash::make($data['password']);
+        
         $member->update($data);
         
         $member->cores()->sync($core_id);

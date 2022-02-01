@@ -32,12 +32,13 @@
                     </a>
 
                     <a href="{{ route('members.edit', $member->id) }}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-
-                    <form class="form-delete d-inline-block" action="{{ route('members.destroy', $member->id) }}" method="post">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
-                    </form>
+                    @can('delete', $member)
+                        <form class="form-delete d-inline-block" action="{{ route('members.destroy', $member->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    @endcan
                 </td>
             </tr>
             @endforeach

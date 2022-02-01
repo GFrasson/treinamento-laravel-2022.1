@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MemberRequest extends FormRequest
+class UpdateMemberRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class MemberRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:2|max:254',
-            'email' => 'required|email|min:2|max:254|unique:members,email',
+            'email' => 'required|email|min:2|max:254|unique:members,email,' . $this->member->id,
             'password' => 'required|string|min:6|max:20',
             'core_id' => 'nullable|array',
             'core_id.*' => 'nullable|integer|exists:cores,id',

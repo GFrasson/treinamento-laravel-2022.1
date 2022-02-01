@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    const ADMIN_ROLES = ['Diretor'];
+
      /**
      * The attributes that are mass assignable.
      *
